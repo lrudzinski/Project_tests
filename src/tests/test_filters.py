@@ -16,7 +16,7 @@ dash = DashboardView(driver)
 shop = ShopView(driver)
 
 
-scenarios('features\\test_filters.feature')
+scenarios("features\\test_filters.feature")
 
 
 @given("the user choose category")

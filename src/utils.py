@@ -3,7 +3,6 @@ import re
 import string
 
 
-
 class Scroll(object):
 
     def __init__(self, driver):
@@ -36,21 +35,23 @@ def remove_text_and_convert_to_int(text):
     else:
         return None
 
+
 def generate_random_email():
-    with open("email.txt", 'a') as file:
+    with open("email.txt", "a") as file:
         while True:
-            username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
-            domains = ['gmail.com', 'onet.pl', 'hotmail.com']
+            username = "".join(random.choices(string.ascii_lowercase + string.digits, k=8))
+            domains = ["gmail.com", "onet.pl", "hotmail.com"]
             domain = random.choice(domains)
-            email = f"{username}@{domain}"            
+            email = f"{username}@{domain}"
             if email not in get_email_from_file("email.txt"):
-                file.write(email + '\n')
+                file.write(email + "\n")
                 return email
+
 
 def get_email_from_file(filename):
     emails = []
     try:
-        with open(filename, 'r') as file:
+        with open(filename, "r") as file:
             for line in file:
                 emails.append(line.strip())
     except FileNotFoundError:

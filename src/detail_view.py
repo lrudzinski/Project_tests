@@ -12,8 +12,6 @@ class DetailView(DashboardView):
         self.button_continue_shop = (By.CLASS_NAME, "continue btn btn-default button exclusive-medium")
         self.amount_product = (By.ID, "quantity_wanted")
         self.size = (By.XPATH, "//select[@id='group_1']")
-        self.color = None
-        self.color_locator = (By.XPATH, f"//a[@name='{self.color}']")
 
     def enter_qoantity(self, amount):
         if self.check_stock_status():
@@ -23,13 +21,15 @@ class DetailView(DashboardView):
     def select_size(self, size):
         dropdown = Select(self.wait_for(self.size))
         dropdown.select_by_visible_text(size)
-    
+
     def select_color(self, color):
         self.wait_for((By.XPATH, f"//a[@name='{color}']")).click()
 
-
     def check_stock_status(self):
-        if self.wait_for(self.product_status).text == "This product is no longer in stock with those attributes but is available with others.":
+        if (
+            self.wait_for(self.product_status).text
+            == "This product is no longer in stock with those attributes but is available with others."
+        ):
             return False
         elif self.wait_for(self.product_status).text == "In stock":
             return True
@@ -43,7 +43,7 @@ class DetailView(DashboardView):
         return "Element  not visible"
 
 
-def proceed_checkout_or_continue_shoping(self, choose):
-    if choose is True:
-        self.wait_for(self.find(self.button_proceed_checkout)).click()
-    self.wait_for(self.find(self.button_continue_shop)).click()
+    def proceed_checkout_or_continue_shoping(self, choose):
+        if choose is True:
+            self.wait_for(self.find(self.button_proceed_checkout)).click()
+        self.wait_for(self.find(self.button_continue_shop)).click()

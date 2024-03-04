@@ -49,7 +49,6 @@ class RegisterView(DashboardView):
         dropdown = Select(self.wait_for(self.dropdown_date_birth["years"]))
         dropdown.select_by_value(str(date_of_birth[2]))
 
-
     def click_checkbox(self):
         self.wait_for(self.checkbox_newsletter).click()
 

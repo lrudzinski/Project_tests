@@ -28,12 +28,11 @@ class ShopView(DashboardView):
     def set_filter_by_checkbox_name(self, checkbox_name):
         self.filter = checkbox_name
         self.wait_for(self.filters).click()
-    
+
     def get_filter_amount(self, checkbox_name):
         time.sleep(10)
         self.filter = checkbox_name
         return remove_text_and_convert_to_int(self.wait_for(self.filters).text)
-
 
     def get_amount_of_showing_items(self):
         return remove_text_and_convert_to_int(self.wait_for(self.items_amount).text)

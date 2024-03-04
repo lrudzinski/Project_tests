@@ -1,18 +1,19 @@
 import pytest
 import requests
 
-TEST_URL = f"https://restful-booker.herokuapp.com/booking/"
+from config import TEST_URL, get_authtoken
 
 
-def test_delete_booking():
-    get_all_bookings = requests.get(f"{TEST_URL}").json()
-    booking_id = get_all_bookings[0]["bookingid"]
-    print(get_all_bookings)
-    print(booking_id)
-    response = requests.delete(f"{TEST_URL}{booking_id}")
-    print(response)
-    assert response.ok
+import pytest
+import aiohttp
+import asyncio
 
 
-if __name__ == "__main__":
-    pytest.main()
+@pytest.mark.asyncio
+async def test_delete_booking():
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"{TEST_URL}") as response_get:
+            get_all_bookings = await response_get.json()
+            booking_id = get_all_bookings[0]["bookingid"]
+            async with session.delete(f"{TEST_URL}{booking_id}", cookies={"token": get_authtoken()}) as response:
+                assert response.status == 201

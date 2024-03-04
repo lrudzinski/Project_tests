@@ -8,6 +8,7 @@ class PaymentView(DashboardView):
         self.pay_bankwire_button = (By.CLASS_NAME, "bankwire")
         self.pay_cheque_button = (By.CLASS_NAME, "cheque")
         self.button_confirm_pay = (By.CLASS_NAME, "btn btn-default button button-medium")
+        self.pay_success = (By.XPATH, "//p[@class='alert alert-success']")
 
     def payment_method(self, option_pay):
         if option_pay == "bankwire":
@@ -17,3 +18,10 @@ class PaymentView(DashboardView):
 
     def confirm_pay(self):
         self.wait_for(self.button_confirm_pay).click()
+
+    def is_pay_success(self):
+        try:
+            self.wait_for(self.register_success)
+            return True
+        except:
+            return False

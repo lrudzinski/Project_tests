@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-TEST_URL = "https://restful-booker.herokuapp.com/booking"
+from config import TEST_URL
 
 
 @pytest.fixture
@@ -23,12 +23,8 @@ def test_create_booking_succes(booking_data):
     assert "bookingid" in response.json()
 
 
-def test_create_booking_not_succes(booking_data):
+def test_create_booking_not_success(booking_data):
     del booking_data["bookingdates"]
     response = requests.post(TEST_URL, json=booking_data)
 
     assert response.status_code == 500
-
-
-if __name__ == "__main__":
-    pytest.main()

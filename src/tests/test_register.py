@@ -12,25 +12,21 @@ from selenium import webdriver
 from pytest_bdd import scenarios, given, when, then, parsers
 from selenium.webdriver.chrome.options import Options
 
-chrome_options = Options()
-chrome_options.add_experimental_option("detach", True)
 
 
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome()
 driver.maximize_window()
 dash = DashboardView(driver)
 register_page = RegisterView(driver)
 
 
-scenarios("features\\test_register_succes.feature")
+scenarios("features\\test_register_success.feature")
 
 
 @given("the user is on the register page")
 def step_user_on_register_page():
     dash.click_sign_in()
-    register_page.create_account(
-        generate_random_email()
-    )
+    register_page.create_account(generate_random_email())
 
 
 @when(parsers.parse("the user enters correct register data"))

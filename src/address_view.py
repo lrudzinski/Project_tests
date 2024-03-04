@@ -3,7 +3,7 @@ from src.dashboard_view import DashboardView
 from selenium.webdriver.support.ui import Select
 
 
-class AddressPage(DashboardView):
+class AddressView(DashboardView):
     def __init__(self, driver):
         super().__init__(driver)
         self.company = (By.ID, "company")
@@ -16,11 +16,12 @@ class AddressPage(DashboardView):
         self.phone_mobile = (By.ID, "phone_mobile")
         self.additional_info = (By.ID, "other")
         self.name_of_address = (By.ID, "alias")
+        self.save_button = (By.ID, "submitAddress")
 
     def enter_company(self, company):
         self.wait_for(self.company).send_keys(company)
 
-    def enter_address(self, address, address_2):
+    def enter_address(self, address, address_2="None_second_address"):
         self.wait_for(self.address_1).send_keys(address)
         self.wait_for(self.address_2).send_keys(address_2)
 

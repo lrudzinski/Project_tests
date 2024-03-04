@@ -9,8 +9,8 @@ class SummaryView(DashboardView):
         self.amount_product = (By.CLASS_NAME, "cart_quantity_input form-control grey")
         self.delete_product = (By.CLASS_NAME, "cart_quantity_delete")
 
-    def enter_last_name(self, amount_product):
-        self.wait_for(self.find(self.amount_product)).send_keys(amount_product)
+    def enter_amount_product(self, amount_product):
+        self.wait_for(self.amount_product).send_keys(amount_product)
 
     def remove_product(self):
         self.wait_for(self.delete_product).click()
