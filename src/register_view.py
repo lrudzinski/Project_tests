@@ -22,7 +22,7 @@ class RegisterView(DashboardView):
         }
         self.checkbox_newsletter = (By.ID, "newsletter")
         self.register_button = (By.ID, "submitAccount")
-        self.register_succes = (By.XPATH, "//p[@class='alert alert-success']")
+        self.register_success = (By.XPATH, "//p[@class='alert alert-success']")
 
     def create_account(self, email):
         self.wait_for(self.create_email_texbox).send_keys(email)
@@ -57,7 +57,7 @@ class RegisterView(DashboardView):
 
     def is_register_succes(self):
         try:
-            self.wait_for(self.register_succes)
+            self.wait_for(self.register_success)
             return True
         except:
             return False

@@ -17,6 +17,7 @@ class AddressView(DashboardView):
         self.additional_info = (By.ID, "other")
         self.name_of_address = (By.ID, "alias")
         self.save_button = (By.ID, "submitAddress")
+        self.page_info = (By.XPATH , "//h1[@class='page-subheading' and contains(text(), 'Your addresses')]")
 
     def enter_company(self, company):
         self.wait_for(self.company).send_keys(company)
@@ -46,3 +47,7 @@ class AddressView(DashboardView):
 
     def enter_name_of_address(self, name_of_address):
         self.wait_for(self.name_of_address).send_keys(name_of_address)
+    
+    def save_address(self):
+        self.wait_for(self.save_button).click()
+    

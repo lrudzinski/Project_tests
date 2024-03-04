@@ -8,7 +8,7 @@ class ShipingView(DashboardView):
         self.checkbox_agreement_confirmation = (By.ID, "ecgv")
         self.button_proceed_checkout = (By.CLASS_NAME, "btn btn-default button button-medium")
 
-    def remove_product(self):
+    def accept_agreement(self):
         self.wait_for(self.checkbox_agreement_confirmation).click()
 
     def proceed_proceed_checkout(self):
